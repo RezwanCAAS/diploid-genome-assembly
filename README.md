@@ -25,3 +25,14 @@
 # 3-evaluate the assembly with quast
 	module load quast/5.2.0
 	quast.py condor_assembly.bp.p_ctg.fasta -o assembly_stats
+
+# 4-calculate BUSCO using compleasm
+	module load compleasm/0.2.2
+	
+	compleasm.py run -a condor_assembly.bp.p_ctg.fasta \
+	-l embryophyta_odb10 \
+	-L /ibex/scratch/projects/c2141/dragon-fruit/hifireads_condor/condor_hifiasm/miniBUSCO_embryophyta/ \
+	-o condor_miniBUSCO_embryophyta_odb10 \
+	-m busco \
+	-t 30 \
+ 
