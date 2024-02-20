@@ -35,4 +35,4 @@
 	-o condor_miniBUSCO_embryophyta_odb10 \
 	-m busco \
 	-t 30 \
- 
+
