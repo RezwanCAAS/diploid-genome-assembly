@@ -4,23 +4,23 @@
 
 module load hifiasm/0.19.8
 
-hifiasm -o condor_assembly -t 32 -s 0.30 -D 10 \
+hifiasm -o assembly -t 32 -s 0.30 -D 10 \
  --h1 /hifireads/hic_dir/read_1_trim.fastq.gz \
  --h2 /hifireads/hic_dir/read_2_trim.fastq.gz \
  hifi_reads_*
  
 
 # 2-convert .gfa into fasta formate
-	awk '/^S/{print ">"$2"\n"$3}' assembly.bp.p_ctg.gfa > assembly.bp.p_ctg.fasta
+	awk '/^S/{print ">"$2"\n"$3}' assembly.hic.p_ctg.gfa > assembly.hic.p_ctg.fasta
 
 # 3-evaluate the assembly with quast
 	module load quast/5.2.0
-	quast.py condor_assembly.bp.p_ctg.fasta -o assembly_stats
+	quast.py assembly.hic.p_ctg.fasta -o assembly_stats
 
 # 4-calculate BUSCO using compleasm
 	module load compleasm/0.2.2
 	
-	compleasm.py run -a condor_assembly.bp.p_ctg.fasta \
+	compleasm.py run -a assembly.hic.p_ctg.fasta \
 	-l embryophyta_odb10 \
 	-L path_library/miniBUSCO_embryophyta/ \
 	-o condor_miniBUSCO_embryophyta_odb10 \
@@ -52,7 +52,7 @@ bwa index assembly.hic.p_ctg.fasta assembly
 #SBATCH --mem=200G
 
 module load python/3.11.0
-export PATH=/ibex/project/c2141/dragon-fruit/hifireads_condor/purge_haplotigs/juicer_pipeline/:$PATH
+export PATH=/ibex/project/hifireads_condor/purge_haplotigs/juicer_pipeline/:$PATH
 
 generate_site_positions.py Arima assembly assembly.hic.p_ctg.fasta
 
@@ -67,7 +67,7 @@ generate_site_positions.py Arima assembly assembly.hic.p_ctg.fasta
 
 module load juicer/1.6
 
-juicer.sh -g condor_assembly_haplotigs -s Arima -z assembly.hic.p_ctg.fasta \
+juicer.sh -g assembly_haplotigs -s Arima -z assembly.hic.p_ctg.fasta \
  -y condor_Arima.txt \
  -p assembly \
  -t 32
@@ -85,7 +85,6 @@ juicer.sh -g condor_assembly_haplotigs -s Arima -z assembly.hic.p_ctg.fasta \
 module load 3d-dna/180419
 
 run-asm-pipeline.sh -r 0 assembly.hic.p_ctg.fasta ~/juicer/aligned/merged_nodups.txt
-
 
 
 #step4_improve the scaffolds using juicebox
