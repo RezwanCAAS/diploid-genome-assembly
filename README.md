@@ -27,7 +27,7 @@ hifiasm -o condor_assembly -t 32 -s 0.30 -D 10 \
 	-m busco \
 	-t 30 \
 
-# Juicer and Juicebox for chromosomal scaffolding
+# 5-Juicer and Juicebox for chromosomal scaffolding
 #step1_index the assembly
 
 #!/bin/bash
