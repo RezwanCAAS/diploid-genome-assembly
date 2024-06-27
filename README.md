@@ -73,18 +73,18 @@
 	 -t 32
 
 
-#step4_run 3dna to make the hic plot and assembly for juicebox
-	#!/bin/bash
-	#SBATCH --job-name=assembly_pipeline
-	#SBATCH --output=assembly_pipeline.%j.out
-	#SBATCH --partition=batch
-	#SBATCH --cpus-per-task=32
-	#SBATCH --time=30:00:00
-	#SBATCH --mem=200G
-	
-	module load 3d-dna/180419
-	
-	run-asm-pipeline.sh -r 0 assembly.hic.p_ctg.fasta ~/juicer/aligned/merged_nodups.txt
+	#step4_run 3dna to make the hic plot and assembly for juicebox
+		#!/bin/bash
+		#SBATCH --job-name=assembly_pipeline
+		#SBATCH --output=assembly_pipeline.%j.out
+		#SBATCH --partition=batch
+		#SBATCH --cpus-per-task=32
+		#SBATCH --time=30:00:00
+		#SBATCH --mem=200G
+		
+		module load 3d-dna/180419
+		
+		run-asm-pipeline.sh -r 0 assembly.hic.p_ctg.fasta ~/juicer/aligned/merged_nodups.txt
 
 
 #step4_improve the scaffolds using juicebox
