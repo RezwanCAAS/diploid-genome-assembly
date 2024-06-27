@@ -57,20 +57,20 @@
 	generate_site_positions.py Arima assembly assembly.hic.p_ctg.fasta
 
 #step3_run Juicer for making the files for scaffolding
-	#!/bin/bash
-	#SBATCH --job-name=juicer
-	#SBATCH --output=juicer.%j.out
-	#SBATCH --partition=batch
-	#SBATCH --cpus-per-task=32
-	#SBATCH --time=80:00:00
-	#SBATCH --mem=200G
-	
-	module load juicer/1.6
-	
-	juicer.sh -g assembly_haplotigs -s Arima -z assembly.hic.p_ctg.fasta \
-	 -y condor_Arima.txt \
-	 -p assembly \
-	 -t 32
+		#!/bin/bash
+		#SBATCH --job-name=juicer
+		#SBATCH --output=juicer.%j.out
+		#SBATCH --partition=batch
+		#SBATCH --cpus-per-task=32
+		#SBATCH --time=80:00:00
+		#SBATCH --mem=200G
+		
+		module load juicer/1.6
+		
+		juicer.sh -g assembly_haplotigs -s Arima -z assembly.hic.p_ctg.fasta \
+		 -y condor_Arima.txt \
+		 -p assembly \
+		 -t 32
 
 
 	#step4_run 3dna to make the hic plot and assembly for juicebox
