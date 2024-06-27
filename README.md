@@ -1,4 +1,4 @@
-# dragon-fruit-genome-assembly
+# diploid-genome-assembly
 
 # 1-PacBio HiFi reads are assembled using hifiasm
 
