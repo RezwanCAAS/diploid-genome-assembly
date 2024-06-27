@@ -43,7 +43,8 @@
 	bwa index assembly.hic.p_ctg.fasta assembly
 
 #step2_indentify the Arima restriction sites in assembly
-	#!/bin/bash
+	
+ 	#!/bin/bash
 	#SBATCH --job-name=enzyme
 	#SBATCH --output=enzyme.%j.out
 	#SBATCH --partition=batch
@@ -57,7 +58,8 @@
 	generate_site_positions.py Arima assembly assembly.hic.p_ctg.fasta
 
 #step3_run Juicer for making the files for scaffolding
-		#!/bin/bash
+		
+  		#!/bin/bash
 		#SBATCH --job-name=juicer
 		#SBATCH --output=juicer.%j.out
 		#SBATCH --partition=batch
@@ -74,7 +76,8 @@
 
 
 #step4_run 3dna to make the hic plot and assembly for juicebox
-	#!/bin/bash
+	
+ 	#!/bin/bash
 	#SBATCH --job-name=assembly_pipeline
 	#SBATCH --output=assembly_pipeline.%j.out
 	#SBATCH --partition=batch
@@ -91,7 +94,6 @@
 
 	#step6_make the fasta sequence after improving the scaffolds using juicebox
 	#!/bin/bash
-	#
 	#SBATCH --job-name=post_assembly
 	#SBATCH --output=post_assembly.%j.out
 	#SBATCH --partition=batch
