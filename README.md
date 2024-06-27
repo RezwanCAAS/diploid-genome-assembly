@@ -2,13 +2,13 @@
 
 # 1-PacBio HiFi reads are assembled using hifiasm
 
-module load hifiasm/0.19.8
+	module load hifiasm/0.19.8
 
-hifiasm -o assembly -t 32 -s 0.30 -D 10 \
- --h1 /hifireads/hic_dir/read_1_trim.fastq.gz \
- --h2 /hifireads/hic_dir/read_2_trim.fastq.gz \
- hifi_reads_*
- 
+	hifiasm -o assembly -t 32 -s 0.30 -D 10 \
+	 --h1 /hifireads/hic_dir/read_1_trim.fastq.gz \
+	 --h2 /hifireads/hic_dir/read_2_trim.fastq.gz \
+	 hifi_reads_*
+	 
 
 # 2-convert .gfa into fasta formate
 	awk '/^S/{print ">"$2"\n"$3}' assembly.hic.p_ctg.gfa > assembly.hic.p_ctg.fasta
